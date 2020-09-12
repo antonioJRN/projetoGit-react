@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
 
     if (storagedRepositories) {
       return JSON.parse(storagedRepositories);
-    } 
+    }
 
       return [];
   });
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
       const response = await api.get<Repository>(`repos/${newRepo}`);
 
       const repository = response.data;
-  
+
       setRepositories([...repositories, repository]);
       setNewRepo('');
       setInputError('');
@@ -64,7 +64,7 @@ const Dashboard: React.FC = () => {
       <Title>Explore repositórios no Github</Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
-        <input 
+        <input
           value={newRepo}
           onChange={(e) => setNewRepo(e.target.value)}
           placeholder="Digite o nome do repositório"
@@ -77,10 +77,10 @@ const Dashboard: React.FC = () => {
       <Repositories>
         {repositories.map(repository => (
           <Link
-            key={repository.full_name} 
+            key={repository.full_name}
             to={`/repositories/${repository.full_name}`}
           >
-            <img 
+            <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}
             />
@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <FiChevronRight size={20} />
-        </Link>
+          </Link>
       ))};
       </Repositories>
     </>
